@@ -1,0 +1,2 @@
+# QEC
+Menghitung efisiensi antrian
