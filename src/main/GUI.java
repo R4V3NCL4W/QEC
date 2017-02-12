@@ -14,23 +14,17 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
-import javax.swing.JRadioButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 import javax.swing.JTextPane;
 import java.awt.TextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
 
 import javax.swing.event.ChangeEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.JScrollPane;
 
 public class GUI {
@@ -408,7 +402,7 @@ public class GUI {
 		tabDeparture.add(txtDTime);
 		
 		txtDeparture = new JTextField();
-		txtDeparture.setText("ARRIVAL");
+		txtDeparture.setText("DEPARTURE");
 		txtDeparture.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDeparture.setForeground(Color.WHITE);
 		txtDeparture.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -664,7 +658,7 @@ public class GUI {
 		lblQEC.setBounds(59, 13, 359, 31);
 		Header.add(lblQEC);
 		
-		JLabel Identity = new JLabel("IF 38 08 - Dasar Pemodelan dan Simulasi");
+		JLabel Identity = new JLabel("IF 38 08 - Basic Modelling and Simulation");
 		Identity.setHorizontalAlignment(SwingConstants.TRAILING);
 		Identity.setForeground(Color.RED);
 		Identity.setFont(new Font("Tahoma", Font.BOLD, 18));
