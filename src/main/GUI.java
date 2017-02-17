@@ -21,25 +21,25 @@ import javax.swing.UIManager;
 import javax.swing.JTextPane;
 import java.awt.TextField;
 import javax.swing.event.ChangeListener;
+import javax.xml.crypto.Data;
+
+import model.Storage;
 
 import javax.swing.event.ChangeEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
+import javax.swing.SpinnerNumberModel;
 
 public class GUI {
 
 	private JFrame GUI;
 	private JTextField txtChart;
-	
-	private JTextField txtTime;
-	private JTextField txtStop;
 	private JDesktopPane tabArrival;
 	private JSpinner spinnerAPerson1;
 	private JSpinner spinnerAPerson2;
 	private JSpinner spinnerAPerson3;
 	private JSpinner spinnerAPerson0;
-	private JTextField txtAPeople;
 	private JTextField txtATime;
 	private JSpinner spinnerAPerson4;
 	private JSpinner spinnerAPerson5;
@@ -52,48 +52,26 @@ public class GUI {
 	private JTextField txtArrival;
 	private JButton btnClear;
 	private String dataLog;
-
-	private JTextField txtAPerson1;
-	private JTextField txtAPerson2;
-	private JTextField txtAPerson3;
-	private JTextField txtAPerson4;
-	private JTextField txtAPerson7;
-	private JTextField txtAPerson8;
-	private JTextField txtAPerson6;
-	private JTextField txtAPerson5;
-	private JTextField txtAPerson11;
-	private JTextField txtAPerson10;
-	private JTextField txtAPerson9;
-	private JTextField txtAPerson0;
 	private JDesktopPane tabDeparture;
-	private JTextField txtDPeople;
 	private JTextField txtDTime;
+	private JSpinner spinnerDPerson0;
+	private JSpinner spinnerDPerson1;
+	private JSpinner spinnerDPerson2;
+	private JSpinner spinnerDPerson3;
+	private JSpinner spinnerDPerson4;
+	private JSpinner spinnerDPerson5;
+	private JSpinner spinnerDPerson6;
+	private JSpinner spinnerDPerson7;
+	private JSpinner spinnerDPerson8;
+	private JSpinner spinnerDPerson9;
+	private JSpinner spinnerDPerson10;
+	private JSpinner spinnerDPerson11;
+	private JButton btnDApply;
 	private JTextField txtDeparture;
-	private JSpinner spinner;
-	private JSpinner spinner_1;
-	private JSpinner spinner_2;
-	private JSpinner spinner_3;
-	private JSpinner spinner_4;
-	private JSpinner spinner_5;
-	private JSpinner spinner_6;
-	private JSpinner spinner_7;
-	private JSpinner spinner_8;
-	private JSpinner spinner_9;
-	private JSpinner spinner_10;
-	private JSpinner spinner_11;
-	private JButton button;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
+	private JTextField txtStop;
+	private JTextField txtStime;
+	
+	public static Data myData;
 	
 
 	/**
@@ -105,6 +83,9 @@ public class GUI {
 				try {
 					//*** System algorithm ***
 
+					Calculation myCalc
+					
+					
 					
 					//*** Window ***
 					GUI window = new GUI();
@@ -139,7 +120,7 @@ public class GUI {
 		
 		JTabbedPane tabPanel = new JTabbedPane(JTabbedPane.TOP);
 		tabPanel.setBackground(Color.WHITE);
-		tabPanel.setBounds(0, 95, 299, 638);
+		tabPanel.setBounds(0, 95, 163, 638);
 		GUI.getContentPane().add(tabPanel);
 		
 		tabArrival = new JDesktopPane();
@@ -147,17 +128,6 @@ public class GUI {
 		tabArrival.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		tabArrival.setBackground(Color.WHITE);
 		tabPanel.addTab("Arrival", null, tabArrival, null);
-		
-		txtAPeople = new JTextField();
-		txtAPeople.setText("People");
-		txtAPeople.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAPeople.setForeground(Color.WHITE);
-		txtAPeople.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtAPeople.setEditable(false);
-		txtAPeople.setColumns(10);
-		txtAPeople.setBackground(new Color(255, 69, 0));
-		txtAPeople.setBounds(12, 54, 184, 28);
-		tabArrival.add(txtAPeople);
 		
 		txtATime = new JTextField();
 		txtATime.setText("Time");
@@ -167,7 +137,7 @@ public class GUI {
 		txtATime.setEditable(false);
 		txtATime.setColumns(10);
 		txtATime.setBackground(new Color(255, 69, 0));
-		txtATime.setBounds(208, 54, 74, 28);
+		txtATime.setBounds(12, 54, 116, 28);
 		tabArrival.add(txtATime);
 		
 		txtArrival = new JTextField();
@@ -178,217 +148,158 @@ public class GUI {
 		txtArrival.setEditable(false);
 		txtArrival.setColumns(10);
 		txtArrival.setBackground(Color.RED);
-		txtArrival.setBounds(12, 13, 270, 28);
+		txtArrival.setBounds(12, 13, 116, 28);
 		tabArrival.add(txtArrival);
 		
 		spinnerAPerson0 = new JSpinner();
+		spinnerAPerson0.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson0.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson0.setBounds(208, 89, 74, 28);
+		spinnerAPerson0.setBounds(12, 89, 116, 28);
 		tabArrival.add(spinnerAPerson0);
 		
 		spinnerAPerson1 = new JSpinner();
+		spinnerAPerson1.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson1.setBounds(208, 124, 74, 28);
+		spinnerAPerson1.setBounds(12, 124, 116, 28);
 		tabArrival.add(spinnerAPerson1);
 		
 		spinnerAPerson2 = new JSpinner();
+		spinnerAPerson2.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson2.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson2.setBounds(208, 159, 74, 28);
+		spinnerAPerson2.setBounds(12, 159, 116, 28);
 		tabArrival.add(spinnerAPerson2);
 		
 		spinnerAPerson3 = new JSpinner();
+		spinnerAPerson3.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson3.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson3.setBounds(208, 194, 74, 28);
+		spinnerAPerson3.setBounds(12, 194, 116, 28);
 		tabArrival.add(spinnerAPerson3);
 		
 		spinnerAPerson4 = new JSpinner();
+		spinnerAPerson4.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson4.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson4.setBounds(208, 229, 74, 28);
+		spinnerAPerson4.setBounds(12, 229, 116, 28);
 		tabArrival.add(spinnerAPerson4);
 		
 		spinnerAPerson5 = new JSpinner();
+		spinnerAPerson5.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson5.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson5.setBounds(208, 264, 74, 28);
+		spinnerAPerson5.setBounds(12, 264, 116, 28);
 		tabArrival.add(spinnerAPerson5);
 		
 		spinnerAPerson6 = new JSpinner();
+		spinnerAPerson6.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson6.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson6.setBounds(208, 299, 74, 28);
+		spinnerAPerson6.setBounds(12, 299, 116, 28);
 		tabArrival.add(spinnerAPerson6);
 		
 		spinnerAPerson7 = new JSpinner();
+		spinnerAPerson7.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson7.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson7.setBounds(208, 334, 74, 28);
+		spinnerAPerson7.setBounds(12, 334, 116, 28);
 		tabArrival.add(spinnerAPerson7);
 		
 		spinnerAPerson8 = new JSpinner();
+		spinnerAPerson8.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson8.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				
 			}
 		});
 		
-		spinnerAPerson8.setBounds(208, 369, 74, 28);
+		spinnerAPerson8.setBounds(12, 369, 116, 28);
 		tabArrival.add(spinnerAPerson8);
 		
 		spinnerAPerson9 = new JSpinner();
+		spinnerAPerson9.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson9.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				
 			}
 		});
 		
-		spinnerAPerson9.setBounds(208, 404, 74, 28);
+		spinnerAPerson9.setBounds(12, 404, 116, 28);
 		tabArrival.add(spinnerAPerson9);
 		
 		spinnerAPerson10 = new JSpinner();
+		spinnerAPerson10.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson10.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson10.setBounds(208, 439, 74, 28);
+		spinnerAPerson10.setBounds(12, 439, 116, 28);
 		tabArrival.add(spinnerAPerson10);
 		
 		spinnerAPerson11 = new JSpinner();
+		spinnerAPerson11.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerAPerson11.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
 		
-		spinnerAPerson11.setBounds(208, 474, 74, 28);
+		spinnerAPerson11.setBounds(12, 474, 116, 28);
 		tabArrival.add(spinnerAPerson11);
 		
-		JButton btnApply = new JButton("APPLY");
-		btnApply.addMouseListener(new MouseAdapter() {
+		JButton btnAApply = new JButton("APPLY");
+		btnAApply.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
 			}
 		});
-		btnApply.setForeground(Color.DARK_GRAY);
-		btnApply.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnApply.setBounds(77, 561, 141, 34);
-		tabArrival.add(btnApply);
-		
-		txtAPerson1 = new JTextField();
-		txtAPerson1.setBounds(12, 124, 184, 28);
-		tabArrival.add(txtAPerson1);
-		txtAPerson1.setColumns(10);
-		
-		txtAPerson2 = new JTextField();
-		txtAPerson2.setColumns(10);
-		txtAPerson2.setBounds(12, 159, 184, 28);
-		tabArrival.add(txtAPerson2);
-		
-		txtAPerson3 = new JTextField();
-		txtAPerson3.setColumns(10);
-		txtAPerson3.setBounds(12, 194, 184, 28);
-		tabArrival.add(txtAPerson3);
-		
-		txtAPerson4 = new JTextField();
-		txtAPerson4.setColumns(10);
-		txtAPerson4.setBounds(12, 229, 184, 28);
-		tabArrival.add(txtAPerson4);
-		
-		txtAPerson7 = new JTextField();
-		txtAPerson7.setColumns(10);
-		txtAPerson7.setBounds(12, 334, 184, 28);
-		tabArrival.add(txtAPerson7);
-		
-		txtAPerson8 = new JTextField();
-		txtAPerson8.setColumns(10);
-		txtAPerson8.setBounds(12, 369, 184, 28);
-		tabArrival.add(txtAPerson8);
-		
-		txtAPerson6 = new JTextField();
-		txtAPerson6.setColumns(10);
-		txtAPerson6.setBounds(12, 299, 184, 28);
-		tabArrival.add(txtAPerson6);
-		
-		txtAPerson5 = new JTextField();
-		txtAPerson5.setColumns(10);
-		txtAPerson5.setBounds(12, 264, 184, 28);
-		tabArrival.add(txtAPerson5);
-		
-		txtAPerson11 = new JTextField();
-		txtAPerson11.setColumns(10);
-		txtAPerson11.setBounds(12, 474, 184, 28);
-		tabArrival.add(txtAPerson11);
-		
-		txtAPerson10 = new JTextField();
-		txtAPerson10.setColumns(10);
-		txtAPerson10.setBounds(12, 439, 184, 28);
-		tabArrival.add(txtAPerson10);
-		
-		txtAPerson9 = new JTextField();
-		txtAPerson9.setColumns(10);
-		txtAPerson9.setBounds(12, 404, 184, 28);
-		tabArrival.add(txtAPerson9);
-		
-		txtAPerson0 = new JTextField();
-		txtAPerson0.setColumns(10);
-		txtAPerson0.setBounds(12, 89, 184, 28);
-		tabArrival.add(txtAPerson0);
+		btnAApply.setForeground(Color.DARK_GRAY);
+		btnAApply.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnAApply.setBounds(12, 561, 116, 34);
+		tabArrival.add(btnAApply);
 		
 		tabDeparture = new JDesktopPane();
 		tabDeparture.setLayout(null);
 		tabDeparture.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		tabDeparture.setBackground(Color.WHITE);
 		tabPanel.addTab("Departure", null, tabDeparture, null);
-		
-		txtDPeople = new JTextField();
-		txtDPeople.setText("People");
-		txtDPeople.setHorizontalAlignment(SwingConstants.CENTER);
-		txtDPeople.setForeground(Color.WHITE);
-		txtDPeople.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtDPeople.setEditable(false);
-		txtDPeople.setColumns(10);
-		txtDPeople.setBackground(new Color(255, 69, 0));
-		txtDPeople.setBounds(12, 54, 184, 28);
-		tabDeparture.add(txtDPeople);
 		
 		txtDTime = new JTextField();
 		txtDTime.setText("Time");
@@ -398,8 +309,64 @@ public class GUI {
 		txtDTime.setEditable(false);
 		txtDTime.setColumns(10);
 		txtDTime.setBackground(new Color(255, 69, 0));
-		txtDTime.setBounds(208, 54, 74, 28);
+		txtDTime.setBounds(12, 54, 116, 28);
 		tabDeparture.add(txtDTime);
+		
+		spinnerDPerson0 = new JSpinner();
+		spinnerDPerson0.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
+		spinnerDPerson0.setBounds(12, 89, 116, 28);
+		tabDeparture.add(spinnerDPerson0);
+		
+		spinnerDPerson1 = new JSpinner();
+		spinnerDPerson1.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
+		spinnerDPerson1.setBounds(12, 124, 116, 28);
+		tabDeparture.add(spinnerDPerson1);
+		
+		spinnerDPerson2 = new JSpinner();
+		spinnerDPerson2.setBounds(12, 159, 116, 28);
+		tabDeparture.add(spinnerDPerson2);
+		
+		spinnerDPerson3 = new JSpinner();
+		spinnerDPerson3.setBounds(12, 194, 116, 28);
+		tabDeparture.add(spinnerDPerson3);
+		
+		spinnerDPerson4 = new JSpinner();
+		spinnerDPerson4.setBounds(12, 229, 116, 28);
+		tabDeparture.add(spinnerDPerson4);
+		
+		spinnerDPerson5 = new JSpinner();
+		spinnerDPerson5.setBounds(12, 264, 116, 28);
+		tabDeparture.add(spinnerDPerson5);
+		
+		spinnerDPerson6 = new JSpinner();
+		spinnerDPerson6.setBounds(12, 299, 116, 28);
+		tabDeparture.add(spinnerDPerson6);
+		
+		spinnerDPerson7 = new JSpinner();
+		spinnerDPerson7.setBounds(12, 334, 116, 28);
+		tabDeparture.add(spinnerDPerson7);
+		
+		spinnerDPerson8 = new JSpinner();
+		spinnerDPerson8.setBounds(12, 369, 116, 28);
+		tabDeparture.add(spinnerDPerson8);
+		
+		spinnerDPerson9 = new JSpinner();
+		spinnerDPerson9.setBounds(12, 404, 116, 28);
+		tabDeparture.add(spinnerDPerson9);
+		
+		spinnerDPerson10 = new JSpinner();
+		spinnerDPerson10.setBounds(12, 439, 116, 28);
+		tabDeparture.add(spinnerDPerson10);
+		
+		spinnerDPerson11 = new JSpinner();
+		spinnerDPerson11.setBounds(12, 474, 116, 28);
+		tabDeparture.add(spinnerDPerson11);
+		
+		btnDApply = new JButton("APPLY");
+		btnDApply.setForeground(Color.DARK_GRAY);
+		btnDApply.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnDApply.setBounds(12, 561, 116, 34);
+		tabDeparture.add(btnDApply);
 		
 		txtDeparture = new JTextField();
 		txtDeparture.setText("DEPARTURE");
@@ -409,122 +376,8 @@ public class GUI {
 		txtDeparture.setEditable(false);
 		txtDeparture.setColumns(10);
 		txtDeparture.setBackground(Color.RED);
-		txtDeparture.setBounds(12, 13, 270, 28);
+		txtDeparture.setBounds(12, 13, 116, 28);
 		tabDeparture.add(txtDeparture);
-		
-		spinner = new JSpinner();
-		spinner.setBounds(208, 89, 74, 28);
-		tabDeparture.add(spinner);
-		
-		spinner_1 = new JSpinner();
-		spinner_1.setBounds(208, 124, 74, 28);
-		tabDeparture.add(spinner_1);
-		
-		spinner_2 = new JSpinner();
-		spinner_2.setBounds(208, 159, 74, 28);
-		tabDeparture.add(spinner_2);
-		
-		spinner_3 = new JSpinner();
-		spinner_3.setBounds(208, 194, 74, 28);
-		tabDeparture.add(spinner_3);
-		
-		spinner_4 = new JSpinner();
-		spinner_4.setBounds(208, 229, 74, 28);
-		tabDeparture.add(spinner_4);
-		
-		spinner_5 = new JSpinner();
-		spinner_5.setBounds(208, 264, 74, 28);
-		tabDeparture.add(spinner_5);
-		
-		spinner_6 = new JSpinner();
-		spinner_6.setBounds(208, 299, 74, 28);
-		tabDeparture.add(spinner_6);
-		
-		spinner_7 = new JSpinner();
-		spinner_7.setBounds(208, 334, 74, 28);
-		tabDeparture.add(spinner_7);
-		
-		spinner_8 = new JSpinner();
-		spinner_8.setBounds(208, 369, 74, 28);
-		tabDeparture.add(spinner_8);
-		
-		spinner_9 = new JSpinner();
-		spinner_9.setBounds(208, 404, 74, 28);
-		tabDeparture.add(spinner_9);
-		
-		spinner_10 = new JSpinner();
-		spinner_10.setBounds(208, 439, 74, 28);
-		tabDeparture.add(spinner_10);
-		
-		spinner_11 = new JSpinner();
-		spinner_11.setBounds(208, 474, 74, 28);
-		tabDeparture.add(spinner_11);
-		
-		button = new JButton("APPLY");
-		button.setForeground(Color.DARK_GRAY);
-		button.setFont(new Font("Tahoma", Font.BOLD, 15));
-		button.setBounds(77, 561, 141, 34);
-		tabDeparture.add(button);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(12, 124, 184, 28);
-		tabDeparture.add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(12, 159, 184, 28);
-		tabDeparture.add(textField_6);
-		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(12, 194, 184, 28);
-		tabDeparture.add(textField_7);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(12, 229, 184, 28);
-		tabDeparture.add(textField_8);
-		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(12, 334, 184, 28);
-		tabDeparture.add(textField_9);
-		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(12, 369, 184, 28);
-		tabDeparture.add(textField_10);
-		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(12, 299, 184, 28);
-		tabDeparture.add(textField_11);
-		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(12, 264, 184, 28);
-		tabDeparture.add(textField_12);
-		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(12, 474, 184, 28);
-		tabDeparture.add(textField_13);
-		
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
-		textField_14.setBounds(12, 439, 184, 28);
-		tabDeparture.add(textField_14);
-		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
-		textField_15.setBounds(12, 404, 184, 28);
-		tabDeparture.add(textField_15);
-		
-		textField_16 = new JTextField();
-		textField_16.setColumns(10);
-		textField_16.setBounds(12, 89, 184, 28);
-		tabDeparture.add(textField_16);
 		
 		JDesktopPane tabStop = new JDesktopPane();
 		tabStop.setLayout(null);
@@ -532,21 +385,8 @@ public class GUI {
 		tabStop.setBackground(Color.WHITE);
 		tabPanel.addTab("Stop", null, tabStop, null);
 		
-		txtTime = new JTextField();
-		txtTime.setToolTipText("Total Cost");
-		txtTime.setText("Time");
-		txtTime.setHorizontalAlignment(SwingConstants.CENTER);
-		txtTime.setForeground(Color.WHITE);
-		txtTime.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtTime.setEditable(false);
-		txtTime.setColumns(10);
-		txtTime.setBackground(Color.GRAY);
-		txtTime.setBounds(12, 61, 126, 28);
-		tabStop.add(txtTime);
-		
 		TextField txtSTime = new TextField();;
-		txtSTime.setEditable(false);
-		txtSTime.setBounds(144, 61, 140, 28);
+		txtSTime.setBounds(12, 95, 116, 28);
 		tabStop.add(txtSTime);
 		
 		txtStop = new JTextField();
@@ -557,14 +397,31 @@ public class GUI {
 		txtStop.setEditable(false);
 		txtStop.setColumns(10);
 		txtStop.setBackground(Color.RED);
-		txtStop.setBounds(12, 13, 272, 28);
+		txtStop.setBounds(12, 13, 116, 28);
 		tabStop.add(txtStop);
+		
+		txtStime = new JTextField();
+		txtStime.setText("Time");
+		txtStime.setHorizontalAlignment(SwingConstants.CENTER);
+		txtStime.setForeground(Color.WHITE);
+		txtStime.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtStime.setEditable(false);
+		txtStime.setColumns(10);
+		txtStime.setBackground(new Color(255, 69, 0));
+		txtStime.setBounds(12, 54, 116, 28);
+		tabStop.add(txtStime);
+		
+		JButton btnSApply = new JButton("APPLY");
+		btnSApply.setForeground(Color.DARK_GRAY);
+		btnSApply.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnSApply.setBounds(12, 561, 141, 34);
+		tabStop.add(btnSApply);
 		
 		JDesktopPane Stage = new JDesktopPane();
 		Stage.setLayout(null);
 		Stage.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		Stage.setBackground(Color.WHITE);
-		Stage.setBounds(311, 95, 1049, 638);
+		Stage.setBounds(175, 95, 1185, 638);
 		GUI.getContentPane().add(Stage);
 		
 		//Stage.getGraphics().drawLine(50, 378, 12, 137);
@@ -637,7 +494,7 @@ public class GUI {
 		txtChart.setEditable(false);
 		txtChart.setColumns(10);
 		txtChart.setBackground(Color.RED);
-		txtChart.setBounds(12, 13, 1025, 37);
+		txtChart.setBounds(12, 13, 1161, 37);
 		Stage.add(txtChart);
 		
 		JDesktopPane Header = new JDesktopPane();
