@@ -1,42 +1,83 @@
 package model;
 
+import model.QueueData;
+
+import java.text.DecimalFormat;
+import java.util.Stack;
+
 import model.DataStructure.person;
 
-public class Calculation {
+public class Calculation extends DataStructure{
 	
-	private person[] queue = new person[23];
+	private static DecimalFormat df2 = new DecimalFormat(".##");
 	
-	public Calculation(Data myData){
-		queue[0] = myData.getA0();
-		queue[1] = myData.getA1();
-		queue[2] = myData.getA2();
-		queue[3] = myData.getA3();
-		queue[4] = myData.getA4();
-		queue[5] = myData.getA5();
-		queue[6] = myData.getA6();
-		queue[7] = myData.getA7();
-		queue[8] = myData.getA8();
-		queue[9] = myData.getA9();
-		queue[10] = myData.getA10();
-		queue[11] = myData.getA11();
-		queue[12] = myData.getD0();
-		queue[13] = myData.getD1();
-		queue[14] = myData.getD2();
-		queue[15] = myData.getD3();
-		queue[16] = myData.getD4();
-		queue[17] = myData.getD5();
-		queue[18] = myData.getD6();
-		queue[19] = myData.getD7();
-		queue[20] = myData.getD8();
-		queue[21] = myData.getD9();
-		queue[22] = myData.getA10();
-		queue[23] = myData.getD11();
+	private person[] queue = new person[24];
+	private double stop;
+	private String[] TS = new String[24];
+	private double[] TAns = new double[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+	private double Ttotal = 0;
+	private String TStotal;
+	private double q = 0;
+	private String qS;
+	
+	public Calculation(QueueData myData){
+		
+		queue[0] = new person(myData.getA0(), "arrival");
+		queue[1] = new person(myData.getA1(), "arrival");
+		queue[2] = new person(myData.getA2(), "arrival");
+		queue[3] = new person(myData.getA3(), "arrival");
+		queue[4] = new person(myData.getA4(), "arrival");
+		queue[5] = new person(myData.getA5(), "arrival");
+		queue[6] = new person(myData.getA6(), "arrival");
+		queue[7] = new person(myData.getA7(), "arrival");
+		queue[8] = new person(myData.getA8(), "arrival");
+		queue[9] = new person(myData.getA9(), "arrival");
+		queue[10] = new person(myData.getA10(), "arrival");
+		queue[11] = new person(myData.getA11(), "arrival");
+		queue[12] = new person(myData.getD0(), "departure");
+		queue[13] = new person(myData.getD1(), "departure");
+		queue[14] = new person(myData.getD2(), "departure");
+		queue[15] = new person(myData.getD3(), "departure");
+		queue[16] = new person(myData.getD4(), "departure");
+		queue[17] = new person(myData.getD5(), "departure");
+		queue[18] = new person(myData.getD6(), "departure");
+		queue[19] = new person(myData.getD7(), "departure");
+		queue[20] = new person(myData.getD8(), "departure");
+		queue[21] = new person(myData.getD9(), "departure");
+		queue[22] = new person(myData.getD10(), "departure");
+		queue[23] = new person(myData.getD11(), "departure");
+		stop = myData.getStop();
 		
 		sorting();
+		
 	}
 	
 	public person getPerson(int index){
 		return queue[index];
+	}
+	
+	public double getTtotal(){
+		return Ttotal;
+	}
+	
+	public String getTStotal(){
+		return TStotal;
+	}
+	
+	public double[] getTAns(){
+		return TAns;
+	}
+	
+	public String getTS(int idx){
+		return TS[idx];
+	}
+	
+	public String getQS(){
+		return qS;
+	}
+	
+	public double getT(int idx){
+		return TAns[idx];
 	}
 	
 	public void sorting(){
@@ -45,21 +86,12 @@ public class Calculation {
 		 * urutkan antrian
 		 * dari time terkecil sampai terbesar
 		 */
-		person temp = null;
-		int idx;
+		person temp;
 		
-		for(idx = 0; idx <= queue.length; idx++){
-			if (queue[idx].getTime() >= 0){
-				temp = queue[idx];
-				queue[idx] = queue[0];
-				queue[0] = temp;
-			}
-		}
-		
-		for (int idx1 = 0; idx1 <= queue.length-1; idx++){
-			for (int idx2 = 1; idx2 <= queue.length; idx++){
-				if (queue[idx1].getTime() > queue[idx2].getTime() && queue[idx2].getTime() >= 0){
-					temp = queue[idx2];
+		for (int idx1 = 0; idx1 < queue.length-1; idx1++){
+			for (int idx2 = idx1+1; idx2 < queue.length; idx2++){
+				if ( queue[idx1].getTime() <= 0 || (queue[idx1].getTime() > queue[idx2].getTime() && queue[idx2].getTime() != -1) ){
+					temp = queue[idx1];
 					queue[idx1] = queue[idx2];
 					queue[idx2] = temp;
 				}
@@ -68,17 +100,91 @@ public class Calculation {
 		
 	}
 	
-	public double averageQueueTime(person[] queue){
+	public void averageQueueTime(){
 		
 		/*
 		 * hitung waktu rata-rata per orang di antrian dan return hasilnya
 		 */
 		
-		return 0;
+		nQueue[] n = new nQueue[24];
+		int Q = 0;
+		n[0] = new nQueue(0, 0);
+		double[] T = new double[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+		//System.out.println("");
+		
+		for (int idx = 1; idx < queue.length && queue[idx].getTime() != -1; idx++){
+			
+			if (queue[idx].getStatus() == "arrival"){
+				
+				if (queue[idx].getTime() < stop){
+					
+					if (Q < 0){
+						TS[0] += " + ( " + queue[idx].getTime() + " - " + n[idx-1].getTime() + " ) ";
+						T[0] += Math.abs(queue[idx].getTime() - n[idx-1].getTime());
+						n[idx] = new nQueue(++Q, queue[idx].getTime());
+					}else{
+						TS[Q] += " + ( " + queue[idx].getTime() + " - " + n[idx-1].getTime() + " ) ";
+						T[Q] += Math.abs(queue[idx].getTime() - n[idx-1].getTime());
+						//TS[Q] += T[Q];
+						n[idx] = new nQueue(++Q, queue[idx].getTime());
+					}
+				
+				}else{
+					Q--;
+					TS[Q] += " + ( " + queue[idx].getTime() + " - " + n[idx-1].getTime() + " ) = ";
+					T[Q] += Math.abs(queue[idx].getTime() - n[idx-1].getTime());
+					//System.out.println(T[Q]);
+					n[idx] = new nQueue(++Q, queue[idx].getTime());
+				}
+				
+			}else if (queue[idx].getStatus() == "departure"){
+				
+				if (Q-1 == -1){
+					
+					TS[Q] += " + ( " + queue[idx].getTime() + " - " + n[idx-1].getTime() + " ) ";
+					T[Q] += Math.abs(queue[idx].getTime() - n[idx-1].getTime());
+					//System.out.println(T[Q]);
+					n[idx] = new nQueue(0, queue[idx].getTime());
+					Q--;
+				
+				}else{
+					
+					TS[Q] += " + ( " + queue[idx].getTime() + " - " + n[idx-1].getTime() + " ) ";
+					T[Q] += Math.abs(queue[idx].getTime() - n[idx-1].getTime());
+					//System.out.println(T[Q]);
+					n[idx] = new nQueue(--Q, queue[idx].getTime());
+				
+				}
+			}
+		}
+		
+		for (int i = 0; TS[i] != null; i++){
+			
+			TS[i] = TS[i].replace("null + ", "");
+			TS[i] = "T" + i + " = " + TS[i];
+		}
+		
+		for (int i = 0; T[i] != 0; i++){
+			TS[i] += " = " + df2.format(T[i]);
+		}
+		
+		for (int i = 0; TS[i] != null; i++){
+			
+			TStotal += " + " + df2.format(T[i]) + " * " + i;
+			Ttotal += T[i] * i;
+			
+		}
+		
+		TStotal = TStotal.replace("null + ", "");
+		TStotal = "Ttotal = " + TStotal + " = " + df2.format(Ttotal);
+		
+		q = Ttotal / stop;
+		qS = "q = " + df2.format(Ttotal) + " / " + df2.format(stop) + " = " + df2.format(q);
 		
 	}
 	
-	public double idleTime(person[] queue){
+	public double idleTime(double[] queue){
 		
 		/*
 		 * hitung waktu status operator/server idle/tidak sibuk dan return hasilnya
